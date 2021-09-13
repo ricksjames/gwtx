@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.google.code.gwtx</groupId>
   <artifactId>gwtx</artifactId>
-  <version>1.5.4-SNAPSHOT</version>
+  <version>1.5.4-java11</version>
   <name>gwtx</name>
   <description>
     The goal of GWTx is to provide drop in support for an extended
@@ -49,7 +49,9 @@
   </developers>
 
   <properties>
-    <gwt.version>1.5.3</gwt.version>
+    <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+    <gwt.version>2.9.0</gwt.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <scm>
@@ -73,9 +75,10 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
         <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
+          <source>1.8</source>
+          <target>1.8</target>
           <excludes>
             <exclude>**/client/**/*.java</exclude>
             <exclude>**/emul/**/*.java</exclude>
@@ -95,7 +98,6 @@
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-dev</artifactId>
       <version>${gwt.version}</version>
-      <classifier>${gwt.variant}</classifier>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -105,42 +107,6 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
-  <profiles>
-    <profile>
-      <id>mac</id>
-      <activation>
-        <os>
-          <family>mac</family>
-        </os>
-      </activation>
-      <properties>
-        <gwt.variant>mac</gwt.variant>
-      </properties>
-    </profile>
-    <profile>
-      <id>linux</id>
-      <activation>
-        <os>
-          <family>unix</family>
-        </os>
-      </activation>
-      <properties>
-        <gwt.variant>linux</gwt.variant>
-      </properties>
-    </profile>
-    <profile>
-      <id>windows</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
-      <properties>
-        <gwt.variant>windows</gwt.variant>
-      </properties>
-    </profile>
-  </profiles>
 
   <distributionManagement>
     <repository>
